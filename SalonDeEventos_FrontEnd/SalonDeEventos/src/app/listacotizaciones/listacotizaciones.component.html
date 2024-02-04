@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta class="viewport" content="width-device-width, initial-scale=1.0">
+    <title>HEADER</title>
+
+</head>
+
+<app-headers></app-headers>
+<h2 style="font-size: 24px; color: black;">LISTA DE COTIZACIONES</h2>
+<div class="table-wrapper">
+    <table class="fl-table">
+        <thead>
+            <tr>
+                <th>TIPO DE EVENTO</th>
+                <th>DESCRIPCIÓN</th>
+                <th>MONTO</th>
+                <th>FECHA INICIO</th>
+                <th>FECHA FIN</th>
+                <th>SALÓN SELECCIONADO</th>
+                <th>ACCIÓN</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngFor="let cot of cotizaciones">
+                <tr>
+                    <td>{{cot.cotiTipoEvento}}</td>
+                    <td>{{cot.cotiDescripcion}}</td>
+                    <td>{{cot.cotiMonto }}</td>
+                    <td>{{cot.cotiHoraInicio}}</td>
+                    <td>{{cot.cotiHoraFin}}</td>
+                    <td>{{cot.salId.salNombre}}</td>
+                    <td><button [routerLink]="['/res','micotizacion',cot.cotiId]">Ver detalle</button></td>
+
+                </tr>
+            </ng-container>
+        <tbody>
+    </table>
+</div>
+
+</html>

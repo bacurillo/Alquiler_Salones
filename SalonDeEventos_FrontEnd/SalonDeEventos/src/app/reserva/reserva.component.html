@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta class="viewport" content="width-device-width, initial-scale=1.0">
+    <title>HEADER</title>
+
+</head>
+
+<app-headers></app-headers>
+
+<div class="container">
+    <section class="layout">
+        <div>
+            <form action="" class="form_main">
+
+                <p class="heading">Crear una Cotización</p>
+                <section class="layout">
+
+                    <div >
+                        <p class="cate" style="font-size: 16px;">¿Que tipo de evento deseas realizar?</p>
+                    </div>
+                    <div class="inputContainer">
+
+                        <select class="select" name="TipoEvento" [(ngModel)]="cotizacion.cotiTipoEvento"
+                            [disabled]="accion === 'micotizacion'">
+                            <option value="" disabled selected>Selecciona una opción</option>
+
+                            <option>Boda</option>
+                            <option>Graduación</option>
+                            <option>Bautizo</option>
+                            <option>Confirmación</option>
+                            <option>Cumpleaños</option>
+                        </select>
+                        <div class="inputContainer">
+                            <input type="text" name="TipoEvento" [(ngModel)]="cotizacion.cotiTipoEvento"
+                                placeholder="Otro..." required [disabled]="accion === 'micotizacion'">
+                        </div>
+                    </div>
+
+
+                    <div class="inputContainer">
+                        <input type="text" name="Descripcion" [(ngModel)]="cotizacion.cotiDescripcion"
+                            placeholder="Ingresa los detalles" required [disabled]="accion === 'micotizacion'">
+                    </div>
+                    <div class="inputContainer">
+
+                        <h1 style="font-size: 16px;">Hora inicio:</h1>
+                        <input type="time" name="HoraInicio" placeholder="Hora de Inicio" required step="900"
+                            [(ngModel)]="selectedTimeIni" (ngModelChange)="calcularMonto()"
+                            [disabled]="accion === 'micotizacion'">
+                    </div>
+
+                    <div class="inputContainer">
+                        <h1 style="font-size: 16px;">Hora fin:</h1>
+
+                        <input type="time" name="HoraFin" placeholder="Hora de Fin" required step="900"
+                            [(ngModel)]="selectedTimeFin" (ngModelChange)="calcularMonto()"
+                            [disabled]="accion === 'micotizacion'">
+                    </div>
+
+
+
+                    <div class="inputContainer">
+
+                        <button class="boton1" style="font-size: 12px;" (click)="crearCotizacion()"
+                            [hidden]="accion !== 'cotizar'">
+                            Guardar Cotización</button>
+
+                        <button class="boton1" style="font-size: 12px;"
+                            [routerLink]="['/cot','reservar',cotizacion.cotiId]"
+                            [hidden]="(accion === 'cotizar' || reservado === false) " (click)="cargar()">
+                            Reservar</button>
+
+                        <button class="boton1" style="font-size: 12px;"
+                            [hidden]="(accion === 'cotizar' || reservado === true)" (click)="cotiReservada()">
+                            Reserva realizada</button>
+
+                    </div>
+
+
+                </section>
+
+
+            </form>
+        </div>
+        <div style="height: 400px;">
+
+            <section class="layout4">
+
+                <div>
+                    <p class="heading">Calculando...</p>
+                </div>
+                <div>
+                    <section class="dots-container">
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                    </section>
+
+                </div>
+                <div>
+                    <p>Cédula del Reservante:</p>
+                </div>
+                <div>
+                    <p class="fecha">{{usuario.usuPerId.perCedula}}</p>
+                </div>
+                <div>
+                    <p>Nombre del Reservante:</p>
+                </div>
+                <div>
+                    <p class="fecha">{{usuario.usuPerId.perNombre}}</p>
+                </div>
+                <div>
+                    <p>Teléfono:</p>
+                </div>
+                <div>
+                    <p class="fecha">{{usuario.usuPerId.perTelefono}}</p>
+                </div>
+                <div>
+                    <p>Correo Electrónico:</p>
+                </div>
+                <div>
+                    <p class="fecha">{{usuario.usuPerId.perCorreo}}</p>
+                </div>
+                <div>
+                    <p>Monetización:</p>
+                </div>
+                <div>
+                    <p class="monto">{{cotizacion.cotiMonto}}</p>
+                </div>
+                <div>
+                    <p>Fecha de Registro:</p>
+                </div>
+                <div>
+                    <p class="fecha">{{ fechaRegistro | date:'dd/MM/yyyy' }}</p>
+                </div>
+
+                <div>
+                    <p>Salón:</p>
+                </div>
+                <div>
+                    <p class="fecha">{{cotizacion.salId.salNombre}}</p>
+                </div>
+                <div>
+                    <p>Costo(hr) del Salón:</p>
+                </div>
+                <div>
+                    <p class="fecha">{{cotizacion.salId.salCostoHora}}</p>
+                </div>
+            </section>
+        </div>
+
+
+
+    </section>
+    <div style="width: 100%;">
+        <h1 style="text-align: center; font-weight: bolder;">Productos Adicionales</h1>
+    </div>
+    <div class="table-wrapper">
+        <table class="fl-table">
+            <thead>
+                <tr>
+                    <th>NOMBRE DEL PRODUCTO</th>
+                    <th>COSTO</th>
+                    <th>CANTIDAD</th>
+                    <th [hidden]="accion==='micotizacion'">ACCIÓN</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let adi of adicionales">
+                    <td>{{adi.prodId.prodNombre}}</td>
+                    <td>{{redondear(adi.adiCantidad * adi.prodId.prodPrecio)}}</td>
+                    <td>{{adi.adiCantidad}}</td>
+                    <td [hidden]="accion==='micotizacion'"><button
+                            style="font-size: 10px; width: 140px; margin-left: 5px;" class="boton1"
+                            (click)="quitarAdiccional(adi.prodId.prodId)"> Quitar </button></td>
+
+                </tr>
+            <tbody>
+        </table>
+    </div>
+    <div style="width: 100%;">
+        <h1 style="text-align: center; font-weight: bolder;">Productos Adicionales</h1>
+    </div>
+    <section style="margin-top: 50px;" class="layout2">
+        <ng-container *ngFor="let prod of productoAct">
+            <div class="card2">
+                <div style="width: 100%; " class="icon">
+                    <img class=" salon" [src]="ObtenerFoto(prod.prodId)" width="90%"
+                        style="border-radius: 10px;   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);">
+                    <h3 style="margin-top: 20px;">{{prod.prodNombre}}</h3>
+
+                </div>
+
+                <br>
+                <span style="text-align: justify; font-size: 15px; margin-top: -30px;">
+                    <br> Precio: {{prod.prodPrecio}}
+                    <br> Categoría: {{prod.catId.catNombre}}
+                    <br> Descripción: {{prod.prodDescripcion}}
+
+                </span>
+
+                <span style="margin-top: -90px;" [hidden]="accion==='micotizacion'">
+                    <h1 style="font-size: 18px; font-weight: bolder; margin-right: 20px;">Cantidad:</h1><input
+                        name="prodPrecio" type="number" [(ngModel)]="nuevoAdicional.adiCantidad" required min="0"
+                        style=" width: 140px;">
+                </span>
+                <span style="text-align: justify; font-size: 24px; margin-top: 130px; display: inline-flexbox;"
+                    [hidden]="accion==='micotizacion'">
+
+                    <button style="font-size: 10px; width: 140px; margin-right: 5px;" class="boton1"
+                        (click)="agregarAdicional(prod)">
+                        Agregar </button>
+                </span>
+
+            </div>
+
+        </ng-container>
+
+    </section>
+
+
+
+</div>
+
+</html>

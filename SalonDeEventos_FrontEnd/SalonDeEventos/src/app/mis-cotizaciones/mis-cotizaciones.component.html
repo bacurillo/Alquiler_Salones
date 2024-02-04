@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta class="viewport" content="width-device-width, initial-scale=1.0">
+    <title>HEADER</title>
+
+</head>
+
+<app-headers></app-headers>
+<h2 style="font-size: 24px; color: black;">LISTA DE COTIZACIONES</h2>
+<!-- <select name="estados" [(ngModel)]="estado" required class="select" (click)="filtro()">
+    <option value="0">TODO</option>
+    <option value="1">COTIZACIONES</option>
+    <option value="2">RESERVADAS</option>
+</select> -->
+<div class="table-wrapper">
+    <table class="fl-table">
+        <thead>
+            <tr>
+                <th>N°</th>
+                <th>FECHA DE REGISTRO</th>
+                <th>TIPO DE EVENTO</th>
+                <th>DESCRIPCIÓN</th>
+                <th>HORA INICIO</th>
+                <th>HORA FIN</th>
+                <th>COSTO</th>
+                <th>SALÓN</th>
+                <th>ACCIÓN</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngFor="let cot of cotizacionesFiltro">
+                <tr>
+                    <td>{{cot.cotiId}}</td>
+                    <td>{{cot.cotiFechaRegistro | date: 'dd/MM/yyyy' }}</td>
+                    <td>{{cot.cotiTipoEvento}}</td>
+                    <td>{{ cot.cotiDescripcion}}</td>
+                    <td>{{ cot.cotiHoraInicio}}</td>
+                    <td>{{ cot.cotiHoraFin}}</td>
+                    <td>${{ cot.cotiMonto}}</td>
+                    <td>{{ cot.salId.salNombre }}</td>
+                
+                <td><button [routerLink]="['/res','micotizacion',cot.cotiId]">Ver detalle</button></td>
+                </tr>
+            </ng-container>
+        <tbody>
+    </table>
+</div>
+
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<!-- Coding by CodingNepal | www.codingnepalweb.com-->
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="UTF-8">
+  <title> Logeo para el Salón de Eventos </title>
+  <!-- Fontawesome CDN Link -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+  <img class="imglogo">
+  <div class="container">
+    <input type="checkbox" id="flip">
+    <div class="cover">
+      <div class="front">
+        <img src="https://th.bing.com/th/id/OIG.DmVNxH9KGtIsSebPjMCj?pid=ImgGn" alt="">
+
+      </div>
+      <div class="back">
+        <!--<img class="backImg" src="images/backImg.jpg" alt="">-->
+        <div class="text">
+          <span class="text-1">Complete miles of journey <br> with one step</span>
+          <span class="text-2">Let's get started</span>
+        </div>
+      </div>
+    </div>
+    <div class="forms">
+      <div class="form-content">
+
+        <div class="login-form">
+          <img class="2" src="assets/img/png.png" routerLink = "/menu" style="align-items: center;" width="65%">
+          <div class="title">Login - Salón de Eventos</div>
+          <form action="#" name="login">
+            <div class="input-boxes">
+              <div class="input-box">
+                <i class="fas fa-envelope"></i>
+                <input type="text" name="usuariologin" [(ngModel)]="usuariologin" placeholder="Ingresa tu Usuario"
+                  required>
+              </div>
+              <div class="input-box">
+                <i class="fas fa-lock"></i>
+                <input type="password" name="passlogin" [(ngModel)]="passlogin" placeholder="Ingresa tu contraseña"
+                  required>
+              </div>
+              <div class="button input-box">
+                <input type="submit" (click)="login()" value="Iniciar Sesión">
+              </div>
+              <div class="text sign-up-text">¿No tienes una cuenta? <label for="flip">Registrate</label></div>
+            </div>
+          </form>
+        </div>
+
+        <div class="signup-form">
+          <div class="title" style="font-weight: bolder;">Crear cuenta en "PERRUNCAY"</div>
+          <!-- <form action=""> -->
+          <form action="#" name="registro">
+            <div class="title2"
+              style="margin-top: 20px; margin-bottom: 10px; font-size: 18px; text-align: center; font-weight: bolder;">
+              Datos
+              Personales</div>
+
+            <section class="layout2">
+              <div class="input-box">
+                <i class="fas fa-user"></i>
+                <input type="text" name="perCedula" [(ngModel)]="persona.perCedula" class="form-control"
+                  placeholder="Cédula" required (keydown)="numeros($event)">
+              </div>
+              <div class="input-box">
+                <i class="fas fa-user"></i>
+                <input type="text" name="perNombre" [(ngModel)]="persona.perNombre" placeholder="Nombres" required>
+              </div>
+              <div class="input-box">
+                <i class="fas fa-user"></i>
+                <input type="text" name="perApellido" [(ngModel)]="persona.perApellido" placeholder="Apellidos"
+                  required>
+              </div>
+              <div class="input-box">
+                <i class="fas fa-envelope"></i>
+                <input type="text" name="perCorreo" [(ngModel)]="persona.perCorreo" placeholder="Correo electrónico"
+                  required>
+              </div>
+
+              <div class="input-box">
+                <i class="fas fa-phone"></i>
+                <input type="text" name="perTelefono" [(ngModel)]="persona.perTelefono" placeholder="Teléfono" required>
+              </div>
+
+              <div class="input-box">
+                <i class="fas fa-calendar"></i>
+                <input type="date" name="perFechaNacimiento" [(ngModel)]="persona.perFechaNacimiento"
+                  placeholder="Fecha de nacimiento" required>
+              </div>
+
+              <div class="input-box">
+                <i class="fas fa-map-marker"></i>
+                <input type="text" name="perDireccion" [(ngModel)]="persona.perDireccion" placeholder="Dirección"
+                  required>
+              </div>
+            </section>
+
+            <div class="title2" 
+            style="margin-top: 20px; margin-bottom: 10px; font-size: 18px; text-align: center; font-weight: bolder;">
+              Datos del Usuario</div>
+            <section class="layout3">
+              <div class="input-box">
+                <i class="fas fa-user"></i>
+                <input type="text" name="usuNombreUsuario" [(ngModel)]="usuario.usuNombreUsuario"
+                  placeholder="Nombre de usuario" required>
+              </div>
+              <div class="input-box">
+                <i class="fas fa-lock"></i>
+                <input type="password" name="usuContrasena" [(ngModel)]="usuario.usuContrasena"
+                  placeholder="Contraseña " required>
+              </div>
+            </section>
+            <div class="input-box">
+              <i class="fas fa-lock"></i>
+              <input type="password" name="confirmarPass" [(ngModel)]="confirmarPass"
+                placeholder="Verifica tu contraseña" required>
+            </div>
+            <div class="button input-box">
+              <input type="submit" value="Registrate" (click)="registrar()">
+            </div>
+          </form>
+          <div class="text sign-up-text">¿Ya tienes una cuenta? <label for="flip">Inicia Sesión</label></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

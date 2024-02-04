@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta class="viewport" content="width-device-width, initial-scale=1.0">
+    <title>HEADER</title>
+
+    <style>
+        /* Estilos para la ventana flotante */
+        .ventana-flotante {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            background-color: rgb(0, 0, 0);
+            background-size: cover;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            display: none;
+            transition: 1seg;
+            z-index: 2;
+            padding: 1rem;
+            background-color: rgba(255, 255, 255, 0.074);
+            border: 1px solid rgba(255, 255, 255, 0.222);
+            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(2px);
+            border-radius: .7rem;
+            transition: all ease .3s;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column
+                /* La ventana flotante está oculta por defecto */
+        }
+
+        .ventana-flotante2 {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            background-size: cover;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            display: none;
+            transition: 1s;
+            z-index: 2;
+            padding: 1rem;
+            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(5px);
+            transition: all ease .3s;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+
+        /* Estilos para el botón de cerrar */
+        .ventana-flotante .cerrar {
+            position: absolute;
+
+            cursor: pointer;
+        }
+
+        .ventana-flotante2 .cerrar {
+            position: absolute;
+
+            cursor: pointer;
+        }
+
+
+        video {
+           
+            border-radius: 20px;
+        }
+    </style>
+
+</head>
+
+
+<div class="header">
+
+    <!--Content before waves-->
+    <app-headers></app-headers>
+
+    <div class="inner-header flex">
+        <!--Just the logo.. Don't mind this-->\
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col-1" style="text-align: justify;">
+                    <h2 >BIENVENIDO <br>{{user.usuPerId.perNombre + " " + user.usuPerId.perApellido}}</h2>
+                    <h3>Recepciones, cotizaciones para eventos</h3>
+                    <p style="color: black;">Cumpleaños, Bautizos</p>
+                    <div>
+                        <button style="margin-top: 20px;" class="boton7" routerLink="/admin">Gestionar</button>
+                    </div>
+                    <div>
+                        <button style="margin-top: 20px;" class="boton8" routerLink="/emp">Gestionar Reservas</button>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <img src="assets/img/copas.png" class="banner">
+                    <div class="color-box"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Waves Container-->
+    <div>
+        <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+            viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+            <defs>
+                <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+            </defs>
+            <g class="parallax">
+                <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7" />
+                <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
+                <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
+                <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
+            </g>
+        </svg>
+    </div>
+    <!--Waves end-->
+
+</div>
+
+
+<body>
+    <div class="div-flip">
+        <div class="flip">
+            <div class="content" style="background: transparent;">
+                <div class="front">
+                    <h2>RESERVAS</h2>
+                </div>
+                <div class="back">
+                    <h2>COTIZACIONES</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <app-slider></app-slider>
+    <div>
+        <h1>MAS INFORMACIÓN</h1>
+    </div>
+    <section class="layout" style="height: 100%;">
+        <div class="div1">
+            <div class="card">
+                <div class="card-content">
+                    <img src="assets/img/escritura.png" width="120px">
+                    <p class="card-title">COTIZACIONES
+                    </p>
+                    <p class="card-para">Realiza cotizaciones automáticas según tus necesidades</p>
+                    <button (click)="mostrarVentanaLogin3()">Cotizar</button>
+
+                </div>
+            </div>
+        </div>
+        <div class="div2">
+            <div class="card">
+                <div class="card-content">
+                    <img src="assets/img/reserva.png" width="120px">
+                    <p class="card-title">RESERVAS
+                    </p>
+                    <p class="card-para">Reserva a partir de tus cotizaciones con los mejores precios</p>
+                    <button (click)="mostrarVentanaLogin2()">Cotizaciones</button>
+
+                </div>
+            </div>
+        </div>
+        <div class="div3">
+            <div class="card">
+                <div class="card-content">
+                    <img src="assets/img/grupo.png" width="120px">
+
+                    <p class="card-title">PERFIL
+                    </p>
+                    <p class="card-para">Crea tu perfil para poder cotizar y reservar en Perruncay</p>
+                    <button (click)="mostrarVentanaLogin()">Mi Perfil</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="layout3">
+        <div class="d-flex justify-content-center">
+            <h1 class="text-center" style="font-size: 25px;">Cotiza en nuestros salones</h1>
+        </div>
+        <div class="d-flex justify-content-center">
+            <a href="/salones" style="margin-top: 50px;">
+                <button style="margin-bottom: 40px;">VER SALONES</button>
+            </a>
+        </div>
+
+    </section>
+
+
+
+    <div class="ventana-flotante2">
+        <div style="width: 100%; text-align: right; margin-bottom: 20px;"> <button class="Cerrar2"
+                onclick="cerrarVentanaLogin()"> Salir
+            </button></div>
+
+        <section style="width: 80%; height: 80%; border-radius: 10px; background-image: url('assets/img/fondo.png');
+        background-size: cover; 
+        background-position: center; 
+        background-repeat: no-repeat;">
+            <div style="display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;"> <img style="margin-top: 50px;" src="assets/img/png.png" width="40%">
+            </div>
+            <h1 style="color: rgb(0, 0, 0); margin-bottom: 20px;">Necesitas una cuenta para realizar esta acción</h1>
+            <section class="layoutlogin2">
+
+                <div style="height: 60%;">
+                    <section class="layoutdentro">
+
+                        <div>
+                            <section style=" align-items: center;" class="layoutlogin">
+                                <div style="display: flex;
+                            justify-content: center;
+                            align-items: center;"> <button style="font-size: 14px;" class="Accion"
+                                        routerLink="/login">INICIAR
+                                        SESIÓN</button>
+                                </div>
+                            </section>
+                        </div>
+                        <div style="  display: flex;
+                        justify-content: center;
+                        align-items: center;">
+                            <video src="ruta_del_video/video.mp4" style="width: 70%; margin: auto;" controls>
+                            </video>
+                        </div>
+                    </section>
+
+                </div>
+                <div>
+                </div>
+            </section>
+        </section>
+    </div>
+
+
+    <div class="ventana-flotante">
+
+
+
+        <button class="Cerrar2" onclick="cerrarVentanaFlotante()"> Salir
+        </button>
+
+    </div>
+
+
+</body>
+
+</html>

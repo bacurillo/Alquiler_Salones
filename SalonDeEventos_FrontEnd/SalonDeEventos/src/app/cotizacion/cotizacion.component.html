@@ -1,0 +1,209 @@
+<!-- CAROUSEL -->
+<!DOCTYPE html>
+<!-- Coding by CodingNepal | www.codingnepalweb.com-->
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <title> Logeo para el Salon de Eventos </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<div>
+    <app-headers></app-headers>
+</div>
+
+<div class="asdsad">
+    <p class="titulo" style="text-align: center; font-size: 36px; font-weight: bolder;">DATOS DE LA RESERVA</p>
+    <section class="background"
+        style=" width: 80% ;  margin-left: auto; margin-right: auto; margin-bottom: 100px; margin-top: 100px;">
+        <section class="layout" style="margin-bottom: px; ">
+            <div>
+                <p style="padding-left: 10%; font-weight: bolder;">Por favor, rellene todos los campos. </p>
+            </div>
+        </section>
+
+        <section class="layout">
+            <div>
+                <p style="padding-left: 10%; font-weight: bolder;">Reserva N° <label for="">{{numReserva}}</label> </p>
+
+            </div>
+        </section>
+
+        <!-- <div style="height: 400px;"> -->
+
+        <section class="layout4">
+
+            <div style="width: 100%;">
+                <p style="text-align: center; font-size: 26px; font-weight: bolder;" class="heading">Datos Personales
+                </p>
+            </div>
+            <div>
+                <p class="fecha"> &nbsp;&nbsp;{{ fechaRegistro | date:'dd/MM/yyyy' }}</p>
+            </div>
+            <div>
+                <p>Fecha de Registro:</p>
+            </div>
+
+            <div>
+                <p class="fecha">{{usuario.usuPerId.perCedula}}</p>
+            </div>
+            <div>
+                <p>Nombre:</p>
+            </div>
+            <div>
+                <p class="fecha">{{usuario.usuPerId.perNombre +" "+usuario.usuPerId.perApellido}}</p>
+            </div>
+            <div>
+                <p>Teléfono:</p>
+            </div>
+            <div>
+                <p class="fecha">{{usuario.usuPerId.perTelefono}}</p>
+            </div>
+            <div>
+                <p>Correo Electrónico:</p>
+            </div>
+            <div>
+                <p class="fecha">{{usuario.usuPerId.perCorreo}}</p>
+            </div>
+            <div>
+                <p>Salón:</p>
+            </div>
+            <div>
+                <p class="monto">{{cotizacion.salId.salNombre}}</p>
+            </div>
+            <div>
+                <p>Dirección:</p>
+            </div>
+            <div>
+                <p class="fecha">{{cotizacion.salId.salDireccion}}</p>
+            </div>
+
+
+        </section>
+        <!-- </div> -->
+
+        <section class="layout2">
+
+            <div class="datos">
+                <div class="datos">
+                    <label style="width: 100%; text-align: center; font-weight: bolder;" for="dia">Fecha de reserva:
+                    </label>
+                </div>
+                <div class="datos">
+                    <!-- <input type="date" name="resFechaEvento" [ngModel]="formatDate(reserva.resFechaEvento)"
+                        (ngModelChange)="updateDate($event)" placeholder="Fecha del Evento" required id="dia"
+                        style=" background-color:#f4e6cd; height: 50px; width: 324px; font-weight: bolder; padding-left: 35px;border: none; border-bottom: 2px solid rgba(0, 0, 0, 0.2);   box-shadow: 3px 3px #cecccc;"> -->
+
+                    <div class="input-box" [hidden]="accion !=='detalle'">
+                        <input type="date" style="color: #75758B;" name="resFechaEvento"
+                            [disabled]="accion ==='detalle'" [ngModel]="formatDate(selectedDate)"
+                            placeholder="Fecha de nacimiento" required
+                            style=" background-color:#f4e6cd; height: 50px; width: 324px; font-weight: bolder; padding-left: 35px;border: none; border-bottom: 2px solid rgba(0, 0, 0, 0.2);   box-shadow: 3px 3px #cecccc;">
+                    </div>
+
+
+                    <div class="input-box" *ngIf="accion ==='reservar'">
+                        <input type="date" style="color: #75758B;" name="resFechaEvento" [(ngModel)]="selectedDate"
+                            placeholder="Fecha de nacimiento" required
+                            style=" background-color:#f4e6cd; height: 50px; width: 324px; font-weight: bolder; padding-left: 35px;border: none; border-bottom: 2px solid rgba(0, 0, 0, 0.2);   box-shadow: 3px 3px #cecccc;">
+                    </div>
+
+                    <div class="mensaje" [style.color]="alertaOcupadoColor">{{ alertaOcupado }}</div>
+
+                    <!-- <p >{{alertaOcupado}} </p> -->
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+        <p style="text-align: center;">Deseas confirmar reserva </p>
+
+        <div [hidden]="!(accion === 'reservar' || accion === 'detalle')">
+            <h2>Subir Comprobante de Pago</h2>
+            <input type="file" accept="image/*" (change)="onFileChange($event)">
+            <section class="layout7">
+                <!-- <ng-container *ngIf="accion ==='registrar'"> -->
+
+                <!-- <div class="card" *ngFor="let preview of filePreviews" style="height: 100%; width: 120px;" >
+                    <img [src]="preview" alt="Vista previa de imagen" class="card-image" style="margin: inherit;">
+                </div> -->
+
+
+
+            </section>
+
+        </div>
+
+
+        <section class="layout3">
+
+            <div style="text-align: center;">
+
+                <div class="buttons" style="margin-top: 20px;" [hidden]="accion !== 'reservar'">
+
+                    <button class="btn" (click)="crearReserva()"><span></span>
+                        <p data-start="good luck!" data-text="CONFIRMAR!" data-title="CONFIRMAR"></p>
+                    </button>
+
+
+
+                </div>
+            </div>
+
+            <div style="text-align: center;">
+
+                <div class="buttons" style="margin-top: 20px;" [hidden]="accion !== 'reservar'">
+
+                    <button class="btn" routerLink="/salones"><span></span>
+                        <p data-start="good luck!" data-text="CANCELAR!" data-title="CANCELAR"></p>
+                    </button>
+
+
+                </div>
+            </div>
+            <div style="text-align: center;">
+
+                <div class="buttons" style="margin-top: 20px;" [hidden]="!(accion === 'detalle')">
+
+                    <button class="btn" (click)="crearReserva()"><span></span>
+                        <p data-start="good luck!" data-text="EDITAR!" data-title="EDITAR"></p>
+                    </button>
+
+
+                </div>
+            </div>
+
+        </section>
+
+        <div class="foto" style="border: 1px solid;"></div>
+        <h1 style="margin-bottom: 20px;">COMPROBANTE DE PAGO</h1>
+        <div *ngFor="let preview of filePreviews"
+            style="width: 100%; display: flex; justify-content: center; align-items: center;">
+            <img [src]="preview" alt="Imagen" class="image-container">
+        </div>
+
+        <div class="foto" style="border: 1px solid;" [hidden]="accion !== 'reservar'"></div>
+        <!-- </section> -->
+    </section>
+    <div class="container4" style="width: 100%;" [hidden]="accion !== 'validar'">
+
+        <div>
+            <h1 style="margin-top: 40px;">¿Qué deseas hacer con esta reserva?</h1>
+        </div>
+
+        <section class="layouthor">
+            <div><button class="boton1" (click)="validarReserva(reserva.resId,1)">En espera</button></div>
+            <div><button class="boton3" (click)="validarReserva(reserva.resId,0)">Descartar</button></div>
+            <div><button class="boton2" (click)="validarReserva(reserva.resId,2)">Aceptar</button></div>
+
+        </section>
+
+    </div>
+</div>
+
+</html>

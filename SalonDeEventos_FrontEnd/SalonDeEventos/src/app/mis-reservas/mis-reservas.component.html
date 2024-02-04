@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta class="viewport" content="width-device-width, initial-scale=1.0">
+    <title>HEADER</title>
+    <style>
+        /* Estilos para el comprobante */
+        body {
+          font-family: Arial, sans-serif;
+        }
+        .comprobante {
+          width: 300px;
+          margin: 20px auto;
+          border: 2px solid #333;
+          padding: 10px;
+          background-color: #f9f9f9;
+        }
+        .logo {
+          text-align: center;
+        }
+        .datos {
+          margin-top: 20px;
+        }
+        .datos span {
+          display: block;
+          margin-bottom: 5px;
+        }
+        .total {
+          text-align: right;
+          margin-top: 20px;
+          font-weight: bold;
+        }
+      </style>
+</head>
+
+<app-headers></app-headers>
+<h2 style="font-size: 24px; color: black;">LISTA DE RESERVAS</h2>
+<select name="estados" style="padding-left: 10px; font-size: 20px; border-radius: 5px; background-color: #f4daaf; margin-left: 70px;"
+[(ngModel)]="estado" required class="select" (click)="listarReservas()">
+    <option value="0">Rechazado</option>
+    <option value="1">Pendiente</option>
+    <option value="2">Aprobado</option>
+</select>
+<div class="table-wrapper">
+    <table class="fl-table">
+        <thead>
+            <tr>
+                <th>N°</th>
+                <th>CÉDULA</th>
+                <th>NOMBRE</th>
+                <th>CORREO</th>
+                <th>ESTADO</th>
+                <th>FECHA SOLICITADA</th>
+                <th>ACCIÓN</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngFor="let res of reservas">
+                <tr>
+                    <td>{{ res.resId }}</td>
+                    <td>{{ res.reCotiId.usuId.usuPerId.perCedula }}</td>
+                    <td>{{ res.usuId.usuPerId.perNombre+" "+res.usuId.usuPerId.perApellido }}</td>
+                    <td>{{ res.usuId.usuPerId.perCorreo }}</td>
+                    <td>{{estados(res.resEstado)}}</td>
+                    <td>{{ res.resFechaEvento | date: 'dd/MM/yyyy' }}</td>
+                    <td>
+                        <div style=""><button type="button" name="button" [routerLink]="['/cot','detalle',res.resId]">
+                                <img src="assets/img/lapiz.png" width="20px">
+                            </button></div>
+                        <!-- <div><button type="button" name="button" (click)="mostrarVentanaLogin2()">Generar Comprobante
+                            </button></div> -->
+                    </td>
+                </tr>
+            </ng-container>
+        <tbody>
+    </table>
+</div>
+
+<div class="ventana-flotante2">
+    <div style="width: 100%; text-align: right; margin-bottom: 20px;"> <button class="Cerrar2"
+            onclick="cerrarVentanaLogin()"> Salir
+        </button></div>
+
+        <div class="comprobante">
+            <div class="logo">
+              <img src="ruta_del_logo.png" alt="Logo de la empresa">
+            </div>
+            <div class="datos">
+              <span>Nombre: Juan Pérez</span>
+              <span>Fecha: 28 de Julio de 2023</span>
+              <span>Concepto: Servicios de Consultoría</span>
+              <span>Monto: $100.00</span>
+            </div>
+            <div class="total">
+              Total: $100.00
+            </div>
+          </div>
+</div>
+
+</html>

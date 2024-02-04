@@ -1,0 +1,83 @@
+<app-headers></app-headers>
+
+
+<div class="CONTENDOR">
+    <form action="#" class="form_main" name="formProd">
+
+        <p class="heading">Crear un Producto</p>
+        <section class="layout">
+            <div class="inputContainer">
+                <input name="prodNombre" type="text" [(ngModel)]="producto.prodNombre" placeholder="Ingresa el nombre"
+                    required>
+            </div>
+
+            <div class="inputContainer">
+                <h2 class="nombre" style="font-size: 18px;">Elige la categoría</h2>
+                <select name="categorias" [(ngModel)]="categoriaSelect" required class="select">
+                    <option *ngFor="let categoria of categorias" [ngValue]="categoria">
+                        {{categoria.catNombre}}
+                    </option>
+                </select>
+            </div>
+            <div class="inputContainer">
+                <input name="prodPrecio" type="number" [(ngModel)]="producto.prodPrecio" placeholder="Ingresa el precio"
+                    required placeholder="Ingresa el precio del producto" required>
+            </div>
+
+            <div class="inputContainer">
+                <input name="prodDescripcion" type="text" [(ngModel)]="producto.prodDescripcion"
+                    placeholder="Ingresa la descripción" required>
+            </div>
+
+            <div class="inputContainer">
+                <h2 class="nombre" style="font-size: 18px;">Elige el tipo</h2>
+                <select name="tipos" [(ngModel)]="tipoSelect" required class="select">
+                    <option *ngFor="let tipo of tipos" [ngValue]="tipo">
+                        {{tipo.tipNombre}}
+                    </option>
+                </select>
+            </div>
+            <div class="inputContainer">
+                <input type="file" accept="image/*" (change)="onFileChange($event)">
+
+                <!-- <button (click)="uploadFiles()">Subir archivos</button> -->
+
+            </div>
+
+        </section>
+
+
+
+        <section class="layout7">
+            <!-- <ng-container *ngIf="accion ==='registrar'"> -->
+            <div class="card" *ngFor="let preview of filePreviews" style="height: 100%; width: 120px;">
+                <img [src]="preview" alt="Vista previa de imagen" class="card-image" style="margin: inherit;">
+            </div>
+            <!-- </ng-container> -->
+            <div class="card-container" *ngFor="let preview of images" style="height: 100%; width: 90%;">
+                <img [src]="preview.imgProdUrl" alt="Vista previa de imagen" class="card-image"
+                    style="margin: inherit;">
+                <!-- <button>Eliminar</button> -->
+            </div>
+        </section>
+        <section class="layout7">
+
+
+            <div class="button-container">
+                <button id="button" (click)="registrar()" [hidden]="accion !== 'registrar'">Crear producto</button>
+                <button id="button" (click)="registrar()" [hidden]="accion !== 'editar'">Editar producto</button>
+            </div>
+        </section>
+
+
+
+
+    </form>
+
+
+</div>
+
+<div>
+
+
+</div>

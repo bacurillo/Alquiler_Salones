@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta class="viewport" content="width-device-width, initial-scale=1.0">
+  <title>HEADER</title>
+
+</head>
+
+<app-headers></app-headers>
+<h2 style="font-size: 24px; color: black;">LISTA DE SALONES</h2>
+
+<div class="inputContainer">
+  <h2 class="nombre" style="font-size: 18px;">Filtrar SALONES</h2>
+
+  <select style="padding-left: 10px; font-size: 20px; border-radius: 5px; background-color: #f4daaf; margin-left: 70px;"
+    name="categorias" [(ngModel)]="estado" required class="select">
+    <option>ACTIVOS</option>
+    <option>INACTIVOS</option>
+  </select>
+
+</div>
+<div [hidden]="estado !== 'ACTIVOS'">
+  <div class="input-box" style="margin-left: 40px; font-size: 28px; color: #E8AA42; ">
+    <i class="fa fa-search" style="margin-left: 70px;"></i>
+
+    <input type="text" style="padding-left: 10px; font-size: 20px; border-radius: 5px; background-color: #f4daaf;"
+      type="text" name="usuario" name="usuario" [(ngModel)]="busquedaAct" (input)="busquedaSalAct()" placeholder="Buscar"
+      required>
+  </div>
+
+  <div class="table-wrapper">
+    <table class="fl-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>SALON</th>
+          <th>DIRECCIÓN</th>
+          <th>CAPACIDAD</th>
+          <th>COSTO POR HORA</th>
+          <th>UBICACIÓN</th>
+          <th>EDITAR</th>
+          <th>ELIMINAR</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let sal of salAc">
+          <td>{{sal.salId}}</td>
+          <td>{{sal.salNombre}}</td>
+          <td>{{sal.salDireccion}}</td>
+          <td>{{sal.salCapacidad}}</td>
+          <td>{{sal.salCostoHora}}</td>
+          <td>{{"Latidud "+sal.salLatitud +", Longitud "+sal.salLongitud}}</td>
+
+          <td class="button">
+            <div>
+              <button type="button" name="button" [routerLink]="['/salon','editar',sal.salId]">
+                <img src="assets/img/lapiz.png" width="20px">
+              </button>
+            </div>
+          </td>
+
+          <td class="button">
+            <div>
+              <button class="2" (click)="actualizarEst(sal.salId,0)">
+                <img src="assets/img/eliminar.png" width="20px">
+              </button>
+            </div>
+          </td>
+
+        </tr>
+      <tbody>
+    </table>
+
+  </div>
+</div>
+
+
+
+<!-- <h2 style="font-size: 24px; color: black;">LISTA DE SALONES INACTIVOS</h2> -->
+<div  [hidden]="estado !== 'INACTIVOS'">
+  <div class="input-box">
+    <i class="fa fa-search" style="margin-left: 70px;"></i>
+
+    <input type="text" style="padding-left: 10px; font-size: 20px; border-radius: 5px; background-color: #f4daaf;"
+      type="text" name="usuario" name="usuario" [(ngModel)]="busquedaInAct" (input)="busquedaSalInact()" placeholder="Buscar"
+      required>
+  </div>
+  <div class="table-wrapper">
+    <table class="fl-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>SALON</th>
+          <th>DESCRIPCIÓN</th>
+          <th>COSTO</th>
+          <th>FECHA DE REGISTRO</th>
+          <th>UBICACIÓN</th>
+          <th>EDITAR</th>
+          <th>ACTIVAR</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let sal of salInac">
+          <td>{{sal.salId}}</td>
+          <td>{{sal.salNombre}}</td>
+          <td>{{sal.salDireccion}}</td>
+          <td>{{sal.salCapacidad}}</td>
+          <td>{{sal.salCostoHora}}</td>
+          <td>{{"Latidud "+sal.salLatitud +", Longitud "+sal.salLongitud}}</td>
+
+          <td class="button">
+            <div>
+              <button type="button" name="button" [routerLink]="['/salon','editar',sal.salId]">
+                <img src="assets/img/lapiz.png" width="20px">
+              </button>
+            </div>
+          </td>
+
+
+          <td class="button2">
+            <div><button class="2" name="button" (click)="activarCuenta(sal.salId)"
+                style="background: #23c483;     box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);">
+                <img src="assets/img/salir.png" width="20px">
+              </button></div>
+          </td>
+        </tr>
+      <tbody>
+    </table>
+
+  </div>
+</div>
+
+</html>

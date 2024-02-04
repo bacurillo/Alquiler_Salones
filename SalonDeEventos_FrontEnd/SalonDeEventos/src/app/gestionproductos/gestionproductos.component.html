@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<!-- Coding by CodingNepal | www.codingnepalweb.com-->
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <title> Logeo para el Salón de Eventos </title>
+    <!-- Fontawesome CDN Link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<app-headers></app-headers>
+
+
+<div>
+    <section class="layout">
+        <a [routerLink]="['/prod','registrar',0]">
+            <div class="card">
+                <div class="icon">
+                    <img src="assets/img/globo.png" width="40px " alt="">
+                </div>
+                <strong> CREAR PRODUCTO
+                </strong>
+                <div class="card__body">
+                    Crear nuevos productos
+                </div>
+                <span> <img src="assets/img/globo.png" width="70px " alt="">
+                </span>
+            </div>
+        </a>
+
+        <a href="/listaprod">
+            <div class="card">
+                <div class="icon">
+                    <img src="assets/img/silla.png" width="40px " alt="">
+                </div>
+                <strong> TABLA DE REGISTROS
+                </strong>
+                <div class="card__body">
+                    Gestionar los salones del sistema
+                </div>
+                <span> <img src="assets/img/silla.png" width="70px " alt="">
+                </span>
+            </div>
+        </a>
+
+
+    </section>
+</div>
+
+</html>

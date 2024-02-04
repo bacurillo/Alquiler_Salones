@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta class="viewport" content="width-device-width, initial-scale=1.0">
+    <title>HEADER</title>
+
+</head>
+
+<app-headers></app-headers>
+<h2 style="font-size: 24px; color: black;">LISTA DE USUARIOS</h2>
+<div class="inputContainer">
+    <h2 class="nombre" style="font-size: 18px;">Filtrar Productos</h2>
+
+    <select
+        style="padding-left: 10px; font-size: 20px; border-radius: 5px; background-color: #f4daaf; margin-left: 70px;"
+        name="categorias" [(ngModel)]="estado" required class="select">
+        <option>ACTIVOS</option>
+        <option>INACTIVOS</option>
+    </select>
+
+</div>
+<div [hidden]="estado !== 'ACTIVOS'">
+
+    <div class="table-wrapper">
+        <div class="input-box" style="    margin-bottom: 20px;">
+            <i style="margin-right: 10px; font-size: 28px; color: #E8AA42;" class="fa fa-search"></i>
+            <input style="padding-left: 10px; font-size: 20px; border-radius: 5px; background-color: #f4daaf;"
+                type="text" name="usuario" [(ngModel)]="busquedaAct" (input)="busquedaUsuariosAct()"
+                placeholder="Buscar" required>
+        </div>
+        <table class="fl-table">
+            <thead>
+                <tr>
+                    <th>Nº USUARIO</th>
+                    <th>CÉDULA</th>
+                    <th>USUARIO</th>
+                    <th>NOMBRE Y APELLIDO</th>
+                    <th>ROL</th>
+                    <th>EDITAR</th>
+                    <th>ELIMINAR</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <ng-container *ngFor="let usu of usuariosAct">
+
+                    <tr *ngIf="usu.usuEstado===1">
+                        <td>{{usu.usuId}}</td>
+                        <td>{{usu.usuPerId.perCedula}}</td>
+                        <td>{{usu.usuNombreUsuario}}</td>
+                        <td>{{usu.usuPerId.perNombre+" "+usu.usuPerId.perApellido}}</td>
+                        <td>{{usu.rolId.rolNombre}}</td>
+                        <td class="button">
+                            <div><button type="button" name="button" [routerLink]="['/editarusu','editar',usu.usuId]">
+                                    <img src="assets/img/lapiz.png" width="20px">
+                                </button></div>
+                        </td>
+
+                        <td class="button2">
+                            <div><button class="3" name="button" (click)="eliminar(usu.usuId)"
+                                    [disabled]="usu.usuId === 1">
+                                    <img src="assets/img/eliminar.png" width="20px">
+                                </button></div>
+                        </td>
+                    </tr>
+                </ng-container>
+
+            <tbody>
+        </table>
+    </div>
+</div>
+
+<!-- <h2 style="font-size: 24px; color: black;">LISTA DE USUARIOS INACTIVOS</h2> -->
+
+<div [hidden]="estado !== 'INACTIVOS'">
+
+    <div class="table-wrapper">
+        <div class="input-box" style="margin-bottom: 20px;">
+            <i style="margin-right: 10px; font-size: 28px; color: #E8AA42; " class="fa fa-search"></i>
+
+            <input style="padding-left: 10px; font-size: 20px; border-radius: 5px; background-color: #f4daaf;"
+                type="text" name="usuario" [(ngModel)]="busquedaInAct" (input)="busquedaUsuariosInact()"
+                placeholder="Buscar" required>
+        </div>
+        <table class="fl-table">
+            <thead>
+                <tr>
+                    <th>Nº USUARIO</th>
+                    <th>CÉDULA</th>
+                    <th>USUARIO</th>
+                    <th>NOMBRE Y APELLIDO</th>
+                    <th>ROL</th>
+                    <th>EDITAR</th>
+                    <th>ACTIVAR</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <ng-container *ngFor="let usu of usuariosInact">
+
+                    <tr *ngIf="usu.usuEstado===0">
+                        <td>{{usu.usuId}}</td>
+                        <td>{{usu.usuPerId.perCedula}}</td>
+                        <td>{{usu.usuNombreUsuario}}</td>
+                        <td>{{usu.usuPerId.perNombre+" "+usu.usuPerId.perApellido}}</td>
+                        <td>{{usu.rolId.rolNombre}}</td>
+                        <td class="button">
+                            <div><button class="2" name="button" [routerLink]="['/editarusu','editar',usu.usuId]">
+                                    <img src="assets/img/cotizar.png" width="20px">
+                                </button></div>
+
+                        </td>
+
+                        <td class="button2">
+                            <div><button class="2" name="button" (click)="activarCuenta(usu.usuId)"
+                                    style="background: #23c483;     box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);"
+                                    [disabled]="usu.usuId === 1">
+                                    <img src="assets/img/salir.png" width="20px">
+                                </button></div>
+                        </td>
+                    </tr>
+                </ng-container>
+
+            <tbody>
+        </table>
+    </div>
+</div>
+
+</html>

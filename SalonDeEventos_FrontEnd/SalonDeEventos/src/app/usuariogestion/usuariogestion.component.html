@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!-- Coding by CodingNepal | www.codingnepalweb.com-->
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <title> Logeo para el Salon de Eventos </title>
+    <!-- Fontawesome CDN Link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<!-- 
+<div class="container">
+    <div class="navbar">
+        <a href="/menu">
+            <img src="assets/img/loogo.png" class="logo">
+        </a>
+        <nav>
+
+            <ul id="menuList">
+                <li><a href="/perfiluser">PERFIL</a></li>
+
+            </ul>
+        </nav>
+        <img src="assets/img/menu.png" class="menu-icon" onclick="togglemenu()">
+    </div>
+</div> -->
+<app-headers></app-headers>
+<div>
+    <section class="layout">
+
+        <div class="card" [routerLink]="['/editarusu','registrar']">
+            <div class="icon">
+                <img src="assets/img/clientes.png" width="40px " alt="">
+            </div>
+            <strong> CREAR USUARIOS
+            </strong>
+            <span> <a [routerLink]="['/editarusu','registrar',0]"><img src="assets/img/clientes.png" width="70px " alt="" ></a>
+            </span>
+        </div>
+
+        <div class="card">
+            <div class="icon">
+                <img src="assets/img/personas.png" width="40px " alt="">
+            </div>
+            <strong> LISTAR USUARIOS
+            </strong>
+            <span> <a href="/listausu"><img src="assets/img/personas.png" width="70px " alt=""></a>
+            </span>
+        </div>
+    </section>
+</div>
+
+</html>

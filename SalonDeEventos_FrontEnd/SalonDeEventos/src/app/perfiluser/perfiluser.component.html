@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta class="viewport" content="width-device-width, initial-scale=1.0">
+  <title>HEADER</title>
+
+</head>
+
+<app-headers></app-headers>
+<div class="container">
+  <div class="row">
+    <div class="perfil">
+      <h1 class="nombreuser">BIENVENIDO</h1>
+      <p class="correo">{{usuario.usuPerId.perNombre+" "+usuario.usuPerId.perApellido}}</p>
+      <button id="button" [routerLink]="['/editarusu','editar',usuario.usuId]">Editar Usuario</button>
+    </div>
+    <div class="col-md-6">
+      <section class="layout">
+        <section class="datosper">
+
+        </section>
+      </section>
+    </div>
+    <div class="col-md-6">
+      <section class="layout">
+        <section class="datosuser">
+
+        </section>
+      </section>
+    </div>
+  </div>
+</div>
+
+
+<section class="layout2">
+
+  <div>
+    <h2 class="info">INFORMACIÓN PERSONAL</h2>
+
+
+  </div>
+  <div>
+    <h2 class="info">INFORMACIÓN DEL USUARIO</h2>
+
+
+  </div>
+</section>
+
+<section class="layout">
+
+  <div>
+    <div class="datostotales">
+      <table class="table">
+        <tbody>
+          <tr>
+            <td class="titulo">Nombres</td>
+            <td class="datos">{{usuario.usuPerId.perNombre}}</td>
+          </tr>
+          <tr>
+            <td class="titulo">Apellidos</td>
+            <td class="datos">{{usuario.usuPerId.perApellido}}</td>
+          </tr>
+          <tr>
+            <td class="titulo">Correo Electrónico</td>
+            <td class="datos">{{usuario.usuPerId.perCorreo}}</td>
+          </tr>
+          <tr>
+            <td class="titulo">Dirección</td>
+            <td class="datos">{{usuario.usuPerId.perDireccion}}</td>
+          </tr>
+          <tr>
+            <td class="titulo">Teléfono</td>
+            <td class="datos">{{usuario.usuPerId.perTelefono}}</td>
+          </tr>
+          <tr>
+            <td class="titulo">Fecha de Nacimiento</td>
+            <td class="datos">{{formatDate(usuario.usuPerId.perFechaNacimiento)}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div>
+    <div class="datostotales">
+      <table class="table">
+        <tbody>
+          <tr>
+            <td class="titulo">Nombre de usuario</td>
+            <td class="datos">{{usuario.usuNombreUsuario}}</td>
+          </tr>
+          <tr>
+            <td class="titulo">Rol</td>
+            <td class="datos">{{usuario.rolId.rolNombre}}</td>
+          </tr>
+          <tr>
+            <td class="titulo">Fecha de registro</td>
+            <td class="datos">{{formatDate(usuario.usuFechaRegistro)}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <div>
+        <button id="button" [routerLink]="['/micot',usuario.usuId]">Mis Cotizaciones</button>
+    
+        <button id="button" [routerLink]="['/mires',usuario.usuId]">Mis Reservas</button>
+      </div>
+    </div>
+  </div>
+
+
+</section>
+<!-- <div class="container">
+    <section class="layout">
+        <div class="perfil">
+            <h1 class="nombreuser">JUAN CARLOS</h1>
+            <p class="correo">Juan-mogrovejo@gmail.com</p>
+            <button id="button">Editar Usuario</button>
+        </div>
+        <section class="datosper">
+            <h2 class="info">Información Personal</h2>
+            <div class="datostotales">
+                <p class="titulo">Nombres</p>
+                <p class="datos">Juan Carlos</p>
+                <p class="titulo">Apellidos</p>
+                <p class="datos">Mogrovejo Ortix</p>
+                <p class="titulo">Correo Electrónico</p>
+                <p class="datos">Juan-mogrovejo@gmail.com</p>
+                <p class="titulo">Dirección</p>
+                <p class="datos">Av.César Andrade y Cordero</p>
+                <p class="titulo">Teléfono</p>
+                <p class="datos">0985860636</p>
+                <p class="titulo">Fecha de Nacimiento</p>
+                <p class="datos">27/08/2000</p>
+            </div>
+        </section>
+        <section class="datosuser">
+            <h2 class="info">Información Usuario</h2>
+            <div class="datostotales">
+                <p class="titulo">Nombre de usuario</p>
+                <p class="datos">Juan-carlos</p>
+            </div>
+        </section>
+    </section> -->
+
+<!-- </div> -->

@@ -1,0 +1,34 @@
+<div class="container">
+    <div class="navbar">
+        <a href="/menu">
+            <img src="assets/img/loogo.png" class="logo">
+        </a>
+        <nav>
+    
+            <ul id="menuList">
+                <!-- <li><a href="/conocenos">!Conócenos!</a></li>
+                <li><a href="/res">Cotizaciones</a></li>
+                <li><a href="/perfiluser">Perfil</a></li> -->
+                <li><a href="/login">Cerrar Sesión</a></li>
+    
+            </ul>
+        </nav>
+        <img src="assets/img/menu.png" class="menu-icon" onclick="togglemenu()">
+    </div>
+    </div>
+    <script>
+        var menuList = document.getElementById("menuList");
+    
+        menuList.style.maxHeight = "0px";
+        function togglemenu() {
+    
+            if (menuList.style.maxHeight == "0px") {
+                menuList.style.maxHeight = "220px";
+            } else {
+    
+                menuList.style.maxHeight = "0px";
+    
+            }
+        }
+    
+    </script>

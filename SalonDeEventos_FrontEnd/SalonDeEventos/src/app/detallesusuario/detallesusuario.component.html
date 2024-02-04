@@ -1,0 +1,107 @@
+<app-headers></app-headers>
+
+<div class="forms">
+    <div class="form-content">
+        <div class="signup-form">
+            <div class="title" style="font-weight: bolder;" [hidden]="accion!=='registrar'">CREAR USUARIO</div>
+            <div class="title" style="font-weight: bolder;" [hidden]="accion!=='editar'">EDITAR PERFIL</div>
+            <!-- <form action=""> -->
+            <div class="title2"
+                style="margin-top: 20px; margin-bottom: 10px; font-size: 18px; text-align: center; font-weight: bolder;">
+                Datos
+                Personales</div>
+
+            <section class="layout2">
+                <div class="input-box">
+                    <i class="fas fa-user"></i>
+                    <input type="text" class="form-control" name="perCedula" [(ngModel)]="persona.perCedula"
+                        placeholder="Cedula" required>
+                </div>
+                <div class="input-box">
+                    <i class="fas fa-user"></i>
+                    <input type="text" name="perNombre" [(ngModel)]="persona.perNombre" placeholder="Nombres"
+                        placeholder="Nombres" required>
+                </div>
+                <div class="input-box">
+                    <i class="fas fa-user"></i>
+                    <input type="text" name="Apellidos" [(ngModel)]="persona.perApellido" placeholder="Apellidos"
+                        required>
+                </div>
+                <div class="input-box">
+                    <i class="fas fa-envelope"></i>
+                    <input type="text" name="Correo" [(ngModel)]="persona.perCorreo" placeholder="Correo Electrónico"
+                        required>
+                </div>
+
+                <div class="input-box">
+                    <i class="fa fa-map-marker"></i>
+                    <input type="text" name="Direccion" [(ngModel)]="persona.perDireccion" placeholder="Dirección"
+                        required>
+                </div>
+
+                <div class="input-box">
+                    <i class="fas fa-phone"></i>
+                    <input type="text" name="Telefono" [(ngModel)]="persona.perTelefono" placeholder="Teléfono"
+                        required>
+                </div>
+
+                <div class="input-box" *ngIf="accion ==='editar'">
+                    <i class="fas fa-calendar"></i>
+                    <input type="date" name="FechaNacimiento" [ngModel]="formatDate(persona.perFechaNacimiento)"
+                        (ngModelChange)="updateDate($event)" placeholder="Fecha de nacimiento" required>
+                </div>
+
+                <div class="input-box" *ngIf="accion ==='registrar'">
+                    <i class="fas fa-calendar"></i>
+                    <input type="date" style="color: #75758B;" name="perFechaNacimiento"
+                        [(ngModel)]="persona.perFechaNacimiento" placeholder="Fecha de nacimiento" required>
+
+                </div>
+
+            </section>
+            <br>
+            <div>
+                <div class="title2"
+                    style="margin-top: 50px; margin-bottom: 10px; font-size: 18px; text-align: center; font-weight: bolder;">
+                    Datos del Usuario</div>
+            </div>
+            <section class="layout3">
+
+                <div class="input-box">
+                    <i class="fas fa-envelope"></i>
+                    <input type="text" name="usuario" [(ngModel)]="usuario.usuNombreUsuario"
+                        placeholder="Nombre de usuario" required>
+                </div>
+                <div class="input-box">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" name="Contraseña" [(ngModel)]="pass"
+                        placeholder="Contraseña " required>
+                </div>
+            </section>
+            <div class="input-box">
+                <i class="fas fa-lock"></i>
+                <input type="password" name="confirmarPass" [(ngModel)]="confirmarPass"
+                    placeholder="Verifica tu contraseña" required>
+            </div>
+            <div class="input-box" [hidden]="sesion.rolId.rolId !==1">
+                <!-- *ngIf="usuario.usuId !== 1" -->
+                <h2 class="nombre">Elige rol</h2>
+                <select  style="font-size: 16px; border-radius: 5px; background-color: #f4daaf; padding: 2px"
+                name="roles" [(ngModel)]="rolSelect" class="select" [disabled]="usuario.usuId === 1">
+                    <option *ngFor="let rol of roles" [ngValue]="rol">
+                        {{rol.rolNombre}}
+                    </option>
+                </select>
+
+            </div>
+
+            <div class="button input-box">
+                <input type="submit" value="Confirmar Cambios" (click)="update()" *ngIf="accion ==='editar'">
+            </div>
+            <div class="button input-box">
+                <input type="submit" value="Registrar" (click)="registrar()" *ngIf="accion ==='registrar'">
+            </div>
+            <!-- </form> -->
+        </div>
+    </div>
+</div>

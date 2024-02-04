@@ -1,0 +1,83 @@
+<html>
+
+<meta class="viewport" content="width-device-width, initial-scale=1.0">
+<title>HEADER</title>
+
+<app-headers></app-headers>
+
+<body>
+
+  <div class="container">
+    <h1 style="color: #ffffff;">{{salon.salNombre}}<br>Salón</h1>
+    <button type="button" name="button" class="button" [routerLink]="['/res','cotizar',salon.salId]">
+      Ir a cotización
+    </button>
+  </div>
+
+  <div class="blank" style="margin-left: auto; margin-right: auto;">
+
+    <div class="container2">
+      <div class="box">
+
+        <div class="title">
+          <span class="block"></span>
+          <h1>Detalles de {{salon.salNombre}}<span></span></h1>
+        </div>
+
+        <div class="role">
+          <div class="block"></div>
+          <p>Capacidad, Costo y Dirección</p>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <div class="container second">
+    <div class="item">
+      <div class="img img-first" style="width: 90%;"></div>
+      <div class="card" style="border: transparent;">
+        <h3>CAPACIDAD </h3>
+        <p>{{salon.salCapacidad}} personas.
+        </p>
+      </div>
+    </div>
+    <div class="item">
+      <div class="img img-second"></div>
+      <div class="card" style="border: transparent;">
+        <h3>COSTO POR HORA</h3>
+        <p>{{salon.salCostoHora}} dólares.
+        </p>
+      </div>
+    </div>
+    <div class="item">
+      <div class="img img-third"></div>
+      <div class="card" style="border: transparent;">
+        <h3>DIRECCIÓN</h3>
+        <p>{{salon.salDireccion}}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="blank" style="margin-left: auto; margin-right: auto;">
+
+    <div class="container2" style="height: 100%;">
+      <div class="box">
+
+        <div class="title" style="height: 100%">
+          <span class="block"></span>
+          <h1>Imagen del Salón {{salon.salNombre}}<span></span></h1>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+  <div class="" style="background-color: transparent; height: 100%; display: flex; justify-content: center; align-items: center; margin-bottom: 50px;">
+    <img [src]="ObtenerFoto(salon.salId)" style="width: 60%; border-radius: 10px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 1);" alt="No se han cargado imagenes">
+  </div>
+</body>
+
+</html>

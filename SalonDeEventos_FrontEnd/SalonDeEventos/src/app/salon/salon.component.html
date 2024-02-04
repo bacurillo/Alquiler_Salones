@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<!-- Coding by CodingNepal | www.codingnepalweb.com-->
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <title> Logeo para el Salon de Eventos </title>
+    <!-- Fontawesome CDN Link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <app-headers></app-headers>
+
+    <div class="container">
+        <div>
+            <form action="" class="form_main">
+
+                <p class="heading">Crear un Nuevo Salón </p>
+                <section class="layout">
+
+                    <div class="inputContainer">
+                        <input type="text" name="salNombre" [(ngModel)]="salon.salNombre"
+                            placeholder="Ingresa el nombre" required>
+                    </div>
+
+                    <div class="inputContainer">
+                        <input type="text" name="salDireccion" [(ngModel)]="salon.salDireccion"
+                            placeholder="Ingresa la dirección" required>
+                    </div>
+
+                    <div class="inputContainer">
+                        <h1>Capacidad:</h1>
+                        <input type="number" name="salCapacidad" [(ngModel)]="salon.salCapacidad"
+                            placeholder="Ingresa la capacidad" required>
+                    </div>
+
+                    <div class="inputContainer">
+                        <h1>Costo por Hora:</h1>
+                        <input type="number" name="salCostoHora" [(ngModel)]="salon.salCostoHora"
+                            placeholder="Ingresa el costo/hora" required>
+                    </div>
+
+                    <div class="inputContainer">
+                        <h1>latitud:</h1>
+
+                        <input type="number" name="salLatitud" [(ngModel)]="salon.salLatitud"
+                            placeholder="Ingresa la latitud del local" required>
+                    </div>
+
+                    <div class="inputContainer">
+                        <h1>Longitud:</h1>
+
+                        <input type="number" name="salLongitud" [(ngModel)]="salon.salLongitud"
+                            placeholder="Ingresa la longitud del local" required>
+                    </div>
+                    <div class="inputContainer">
+                        <input type="file" accept="image/*" (change)="onFileChange($event)" >
+
+                        <!-- <button (click)="uploadFiles()">Subir archivos</button> -->
+
+                    </div>
+
+                    <div></div>
+                    <div style="  text-align: right;">
+                        <button id="button" (click)="registrarSalon()" *ngIf="accion ==='registrar'">Crear
+                            Salón</button>
+                        <button id="button" (click)="registrarSalon()" *ngIf="accion ==='editar'">Editar Salón</button>
+                    </div>
+                </section>
+
+
+            </form>
+
+
+        </div>
+
+    </div>
+
+
+
+</body>
+
+</html>

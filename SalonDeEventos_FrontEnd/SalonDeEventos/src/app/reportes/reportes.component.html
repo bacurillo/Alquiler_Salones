@@ -1,0 +1,249 @@
+<app-headers></app-headers>
+
+<style>
+    /* Estilos para el comprobante */
+    body {
+        font-family: Arial, sans-serif;
+    }
+
+    .comprobante {
+        width: 100%;
+        margin: 20px auto;
+        border: 2px solid #333;
+        padding: 10px;
+        background-color: #f9f9f9;
+    }
+
+    .logo {
+        text-align: center;
+    }
+
+    .datos {
+        margin-top: 20px;
+    }
+
+    .datos span {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .total {
+        text-align: right;
+        margin-top: 20px;
+        font-weight: bold;
+    }
+</style>
+
+<div style="width: 100%;">
+    <h2 style="margin-top: 40px; margin-bottom: 40px; text-align: center;">GENERACIÓN DE RESPORTES</h2>
+</div>
+
+
+<section class="layout">
+    <div></div>
+    <div style="      border: 1px solid #ccc;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-color: transparent;">
+        <button id="bottone5" (click)="mostrarVentanaLogin2()">RESERVAS ENTRE DOS FECHAS</button>
+    </div>
+    <!-- <div style="      border: 1px solid #ccc;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;border-color: transparent;">
+        <button (click)="mostrarVentanaLogin3()" id="bottone5">RESERVAS POR SALÓN</button>
+    </div>
+    <div style="      border: 1px solid #ccc;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;border-color: transparent;">
+        <button (click)="mostrarVentanaLogin4()" id="bottone5">RESERVAS POR FECHA</button>
+    </div> -->
+</section>
+
+<div class="ventana-flotante2">
+    <div style="width: 100%; text-align: right; margin-bottom: 20px;"> <button class="Cerrar2"
+            onclick="cerrarVentanaLogin()"> Salir
+        </button>
+    </div>
+
+    <div class="comprobante">
+        <h3 style="text-align: center;">Reporte de reservas entre:</h3>
+        <div>
+            <section class="layout2" style="margin-top: 40px;">
+
+                <div>
+                    <p>Fecha Inicio:
+                        <input type="date" style="color: #75758B;" name="fechaIni" placeholder="Fecha Inicio"
+                            [(ngModel)]="fechaIni" required
+                            style="background-color:#f4e6cd; height: 50px; width: 324px; font-weight: bolder; padding-left: 35px; border: none; border-bottom: 2px solid rgba(0, 0, 0, 0.2); box-shadow: 3px 3px #cecccc;"
+                            (ngModelChange)="obtenerReporteFecha()">
+                    </p>
+
+                </div>
+                <div>
+                    <p>Fecha Fin:
+                        <input type="date" style="color: #75758B;" name="fechaFin" placeholder="Fecha Fin"
+                            [(ngModel)]="fechaFin" required
+                            style="background-color:#f4e6cd; height: 50px; width: 324px; font-weight: bolder; padding-left: 35px; border: none; border-bottom: 2px solid rgba(0, 0, 0, 0.2); box-shadow: 3px 3px #cecccc;"
+                            (ngModelChange)="obtenerReporteFecha()">
+                    </p>
+
+
+                </div>
+            </section>
+
+
+
+            <p style="width: 100%; text-align: center;" >Selecciona el estado de la reserva: </p>
+
+            <div style="display: flex; justify-content: center; margin-bottom: 50px; margin-top: 10px;">
+            <select name="estados"
+                style="padding-left: 10px; font-size: 20px; border-radius: 5px; background-color: #f4daaf;"
+                [(ngModel)]="estado" required class="select" (click)="obtenerReporteFecha()">
+                <option value=0>Rechazado</option>
+                <option value=1>Pendiente</option>
+                <option value=2>Aprobado</option>
+            </select>
+
+            </div>
+
+
+            <section class="layout2">
+                <div> <button class="boton1" (click)="generarPDF()">Generar
+                        PDF</button></div>
+                <div>
+
+                    <button class="boton1" (click)="descargarPDF()">Descargar
+                        PDF</button>
+                </div>
+            </section>
+
+        </div>
+
+        <div class="datos">
+            <div class="table-wrapper">
+                <table class="fl-table">
+                    <thead>
+                        <tr>
+                            <th>N°</th>
+                            <th>CÉDULA</th>
+                            <th>NOMBRE</th>
+                            <th>CORREO</th>
+                            <th>ESTADO</th>
+                            <th>FECHA SOLICITADA</th>
+                            <th>FECHA EVENTO</th>
+                            <th>SALÓN</th>
+                            <th>COSTO</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let res of reporteFechas">
+                            <td>{{res.resId}}</td>
+                            <td>{{res.reCotiId.usuId.usuPerId.perCedula}}</td>
+                            <td>{{res.reCotiId.usuId.usuPerId.perNombre}} {{res.reCotiId.usuId.usuPerId.perApellido}}
+                            </td>
+                            <td>{{res.reCotiId.usuId.usuPerId.perCorreo}}</td>
+                            <td>{{res.resEstado}}</td>
+                            <td>{{fechaFormateada(res.resFechaRegistro)}}</td>
+                            <td>{{fechaFormateada(res.resFechaEvento)}}</td>
+                            <td>{{res.reCotiId.salId.salNombre}}</td>
+                            <td>{{res.reCotiId.cotiMonto}}</td>
+
+                        </tr>
+                    <tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="ventana-flotante3">
+    <div style="width: 100%; text-align: right; margin-bottom: 20px;"> <button class="Cerrar2"
+            onclick="cerrarVentanaLogin3()"> Salir
+        </button></div>
+
+    <div class="comprobante">
+        <h3 style="text-align: center;">Reporte por Salones</h3>
+
+        <div>
+
+            <input type="text">
+        </div>
+        <div class="datos">
+            <div class="table-wrapper">
+                <table class="fl-table">
+                    <thead>
+                        <tr>
+                            <th>N°</th>
+                            <th>CÉDULA</th>
+                            <th>NOMBRE</th>
+                            <th>CORREO</th>
+                            <th>ESTADO</th>
+                            <th>FECHA SOLICITADA</th>
+                            <th>ACCIÓN</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                            </td>
+
+                        </tr>
+                    <tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="ventana-flotante4">
+    <div style="width: 100%; text-align: right; margin-bottom: 20px;"> <button class="Cerrar2"
+            onclick="cerrarVentanaLogin4()"> Salir
+        </button></div>
+
+    <div class="comprobante">
+        <h3 style="text-align: center;">Reporte por Fecha</h3>
+        <div class="datos">
+            <div class="table-wrapper">
+                <table class="fl-table">
+                    <thead>
+                        <tr>
+                            <th>N°</th>
+                            <th>CÉDULA</th>
+                            <th>NOMBRE</th>
+                            <th>CORREO</th>
+                            <th>ESTADO</th>
+                            <th>FECHA SOLICITADA</th>
+                            <th>ACCIÓN</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                            </td>
+
+                        </tr>
+                    <tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div> -->

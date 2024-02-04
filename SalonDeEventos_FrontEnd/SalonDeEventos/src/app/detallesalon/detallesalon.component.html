@@ -1,0 +1,63 @@
+<app-headers></app-headers>
+
+<div class="forms">
+    <div class="form-content">
+        <div class="title" style="font-weight: bolder; text-align: center; font-size: 32px">Editar Salón</div>
+
+        <section class="layout">
+
+            <div class="signup-form" style="width: 80%; margin: auto;">
+                <!-- <form action=""> -->
+                <div class="title2"
+                    style="margin-top: 20px; margin-bottom: 10px; font-size: 18px; text-align: center; font-weight: bolder;">
+                    Datos
+                    del Salón</div>
+
+                <section class="layout2">
+                    <div class="input-box">
+                        <i class="fas fa-user"></i>
+                        <input type="text" class="form-control" name="Nombre" [(ngModel)]="salon.salNombre"
+                            placeholder="Nombre" required>
+                    </div>
+                    <div class="input-box">
+                        <i class="fas fa-user"></i>
+                        <input type="text" name="Dirección" [(ngModel)]="salon.salDireccion" placeholder="Dirección"
+                            required>
+                    </div>
+                    <div class="input-box">
+                        <i class="fas fa-user"></i>
+                        <input type="number" name="salCapacidad" [(ngModel)]="salon.salCapacidad"
+                            placeholder="Capacidad" required>
+                    </div>
+                    <div class="input-box">
+                        <i class="fas fa-envelope"></i>
+                        <input type="number" name="salCapacidad" [(ngModel)]="salon.salCostoHora"
+                            placeholder="Costo por Hora" required>
+                    </div>
+
+                    <div class="input-box">
+                        <i class="fas fa-envelope"></i>
+                        <input type="number" name="salCapacidad" [(ngModel)]="salon.salLatitud" placeholder="Latitud"
+                            required>
+                    </div>
+
+                    <div class="input-box">
+                        <i class="fas fa-phone"></i>
+                        <input type="number" name="salCapacidad" [(ngModel)]="salon.salLongitud" placeholder="Longitud"
+                            required>
+                    </div>
+                    <div style="  text-align: left; margin-top: 20px;">
+                        <button id="button" type="submit" (click)="update()">Confirmar Cambios</button>
+                    </div>
+                    <div></div>
+
+                </section>
+            </div>
+            <div style="width: 100%;">
+
+                <img src="assets/img/editar.png" width="60%">
+            </div>
+        </section>
+
+    </div>
+</div>
